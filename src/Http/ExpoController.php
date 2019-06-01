@@ -50,7 +50,7 @@ class ExpoController extends Controller
 
         $token = $request->get('expo_token');
 
-        $interest = $this->expoChannel->interestName(Auth::user());
+        $interest = $this->expoChannel->interestName(auth()->user());
 
         try {
             $this->expoChannel->expo->subscribe($interest, $token);
@@ -78,7 +78,7 @@ class ExpoController extends Controller
      */
     public function unsubscribe(Request $request)
     {
-        $interest = $this->expoChannel->interestName(Auth::user());
+        $interest = $this->expoChannel->interestName(auth()->user());
 
         $validator = Validator::make($request->all(), [
             'expo_token'    =>  'sometimes|string',
